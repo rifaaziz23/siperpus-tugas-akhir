@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->string('city');
             $table->string('cover');
-            $table->foreignId('bookshelf_id')->constrained()->onDelete('cascade')->onUpdate('cascade');
+            $table->foreignId('bookshelf_id');
 
             $table->timestamps();
         });

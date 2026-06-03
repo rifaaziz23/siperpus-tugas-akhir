@@ -14,7 +14,15 @@ class BookController extends Controller
      */
     public function index()
     {
-        $data['books'] = Book::all();       // ambil data
+        $sort = request('sort', 'title');
+
+        // Handle sorting
+        if ($sort === 'title_desc') {
+            $data['books'] = Book::orderBy('title', 'desc')->get();
+        } else {
+            $data['books'] = Book::orderBy('title', 'asc')->get();
+        }
+
         return view('books.index', $data);
     }
 

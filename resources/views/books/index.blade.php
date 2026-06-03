@@ -9,10 +9,27 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
-                    <x-primary-button tag="a" href="{{ route('books.create') }}">
-                        Tambah Data Buku
-                    </x-primary-button>
-                    <br /><br />
+                    <div class="flex items-center gap-4">
+                        <x-primary-button tag="a" href="{{ route('books.create') }}">
+                            Tambah Data Buku
+                        </x-primary-button>
+
+                        <form method="GET" action="{{ route('books.index') }}" class="flex items-center gap-2">
+                            <label for="sort" class="text-sm font-medium">Urutan:</label>
+                            <select name="sort" id="sort"
+                                class="px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md dark:bg-gray-700 dark:text-gray-100">
+                                <option value="title" {{ request('sort') === 'title' ? 'selected' : '' }}>Judul A-Z
+                                </option>
+                                <option value="title_desc" {{ request('sort') === 'title_desc' ? 'selected' : '' }}>
+                                    Judul Z-A</option>
+                            </select>
+                            <button type="submit"
+                                class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md text-sm">
+                                Sort
+                            </button>
+                        </form>
+                    </div>
+                    <br />
                     <x-table>
                         <x-slot name="header">
                             <tr>
